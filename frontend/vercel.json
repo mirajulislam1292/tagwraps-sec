@@ -7,6 +7,10 @@
     {
       "source": "/health",
       "destination": "https://tagwraps-sec.onrender.com/health"
+    },
+    {
+      "source": "/health/",
+      "destination": "https://tagwraps-sec.onrender.com/health"
     }
   ]
 }

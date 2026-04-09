@@ -13,7 +13,9 @@ export function BrandMark({ variant = 'light' }) {
       />
       <div className="leading-tight">
         <div className="font-bold">TagWraps Sec</div>
-        <div className="text-xs text-text-secondary">Simply Authentic.</div>
+        <div className={variant === 'dark' ? 'text-xs text-white/80' : 'text-xs text-text-secondary'}>
+          Simply Authentic.
+        </div>
       </div>
     </div>
   )
