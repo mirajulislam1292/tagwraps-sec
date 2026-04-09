@@ -13,8 +13,8 @@ import {
 
 export function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-20 backdrop-blur bg-primary/10 border-b border-primary/15 shadow-sm">
+    <div className="min-h-screen bg-primary/10">
+      <header className="sticky top-0 z-20 backdrop-blur bg-primary/15 border-b border-primary/20 shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-4">
           <BrandMark />
           <div className="flex items-center gap-2">
@@ -48,7 +48,7 @@ export function HomePage() {
           <div className="relative mx-auto max-w-6xl px-4 pt-12 pb-12">
             <div className="grid lg:grid-cols-2 gap-10 items-center rounded-[2rem] border border-primary/15 bg-white/95 p-8 shadow-card">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs text-primary">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/15 px-3 py-1 text-xs text-primary">
                 <span className="h-2 w-2 rounded-full bg-primary" />
                 TagWraps Sec · Manufacturer platform
               </div>
@@ -57,7 +57,6 @@ export function HomePage() {
                 Secure your supply chain
                 <br className="hidden sm:block" />
                 with cryptographic NFC tags.
-                <span className="text-primary"> Simply Authentic.</span>
               </h1>
 
               <p className="mt-5 text-base sm:text-lg text-text-secondary leading-relaxed">
@@ -84,9 +83,9 @@ export function HomePage() {
                 <Stat k="1 in 5" v="consumer products may be fake" s="Bangladesh" />
               </div>
 
-              <div className="mt-6 rounded-2xl border border-primary/15 bg-primary/10 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="mt-6 rounded-2xl border border-primary/20 bg-primary/15 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
-                  <div className="text-sm font-bold text-text-primary">Public customer verification page</div>
+                  <div className="text-sm font-bold text-primary">Public customer verification page</div>
                   <div className="text-sm text-text-secondary">
                     Customers tap a tag and open <span className="font-medium">/verify/&lt;tag_uid&gt;</span>.
                   </div>
@@ -97,7 +96,7 @@ export function HomePage() {
               </div>
             </div>
 
-            <div className="rounded-2xl bg-gradient-to-br from-primary/20 via-white to-white border border-primary/15 shadow-card p-6">
+            <div className="rounded-2xl bg-gradient-to-br from-primary/25 via-primary/10 to-white border border-primary/15 shadow-card p-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-bold text-text-primary">Authentication layer</div>
@@ -183,7 +182,7 @@ export function HomePage() {
 
       </main>
 
-      <footer className="border-t border-border bg-white">
+      <footer className="border-t border-primary/15 bg-primary/10">
         <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BrandMark />
           <div className="text-sm text-text-secondary">
