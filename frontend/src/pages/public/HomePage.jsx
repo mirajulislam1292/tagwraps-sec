@@ -14,12 +14,12 @@ import {
 export function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-20 backdrop-blur bg-white/90 border-b border-primary/10 shadow-sm">
+      <header className="sticky top-0 z-20 backdrop-blur bg-primary/10 border-b border-primary/15 shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-4">
           <BrandMark />
           <div className="flex items-center gap-2">
             <a href="https://tagwraps.vercel.app/" target="_blank" rel="noreferrer">
-              <Button variant="ghost" className="hidden sm:inline-flex">
+              <Button variant="ghost" className="hidden sm:inline-flex border border-primary/15 bg-primary/5 text-primary hover:bg-primary/10">
                 Info
                 <ArrowRight size={16} />
               </Button>
@@ -37,18 +37,18 @@ export function HomePage() {
       </header>
 
       <main>
-        <section className="relative overflow-hidden bg-primary/5">
+        <section className="relative overflow-hidden bg-primary/10">
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-white to-background" />
-            <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-primary/35 blur-3xl" />
-            <div className="absolute top-28 -right-24 h-[520px] w-[520px] rounded-full bg-primary/30 blur-3xl" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-white to-background" />
+            <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-primary/40 blur-3xl" />
+            <div className="absolute top-28 -right-24 h-[520px] w-[520px] rounded-full bg-primary/35 blur-3xl" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           </div>
 
           <div className="relative mx-auto max-w-6xl px-4 pt-12 pb-12">
             <div className="grid lg:grid-cols-2 gap-10 items-center rounded-[2rem] border border-primary/15 bg-white/95 p-8 shadow-card">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-3 py-1 text-xs text-text-secondary">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs text-primary">
                 <span className="h-2 w-2 rounded-full bg-primary" />
                 TagWraps Sec · Manufacturer platform
               </div>
@@ -223,10 +223,10 @@ function Feature({ icon, title, body }) {
 
 function Stat({ k, v, s }) {
   return (
-    <div className="rounded-xl border border-primary/15 bg-white/70 backdrop-blur p-3">
+    <div className="rounded-xl border border-primary/15 bg-primary/5 p-3">
       <div className="text-lg font-black text-text-primary">{k}</div>
-      <div className="text-xs text-text-secondary">{v}</div>
-      <div className="mt-1 text-[11px] text-text-secondary/80">{s}</div>
+      <div className="text-xs text-primary/80">{v}</div>
+      <div className="mt-1 text-[11px] text-primary/60">{s}</div>
     </div>
   )
 }

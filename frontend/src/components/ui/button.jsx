@@ -11,8 +11,8 @@ export function Button({
     'inline-flex items-center justify-center gap-2 font-medium rounded-md transition disabled:opacity-60 disabled:cursor-not-allowed'
   const variants = {
     primary: 'bg-primary text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/30',
-    secondary: 'bg-white border border-primary/20 text-text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/20',
-    ghost: 'bg-transparent text-text-primary hover:bg-black/5',
+    secondary: 'bg-white border border-primary/20 text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/30',
+    ghost: 'bg-transparent text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/20',
     danger: 'bg-danger text-white hover:brightness-95',
   }
   const sizes = {
