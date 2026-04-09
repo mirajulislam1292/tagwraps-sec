@@ -1,227 +1,126 @@
 import { Link } from 'react-router-dom'
+import { Navbar } from '../../components/layout/Navbar'
 import { BrandMark } from '../../components/layout/BrandMark'
 import { Button } from '../../components/ui/button'
-import { Card, CardContent } from '../../components/ui/card'
-import {
-  ShieldCheck,
-  Smartphone,
-  KeyRound,
-  Activity,
-  ArrowRight,
-  PlayCircle,
-} from 'lucide-react'
 
 export function HomePage() {
   return (
-    <div className="min-h-screen bg-[#F7F8FC]">
-      <header className="sticky top-0 z-20 backdrop-blur bg-surface/80 border-b border-border shadow-card">
-        <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-4">
-          <BrandMark />
-          <div className="flex items-center gap-2">
-            <a href="https://tagwraps.vercel.app/" target="_blank" rel="noreferrer">
-              <Button variant="ghost" className="hidden sm:inline-flex">
-                Info
-                <ArrowRight size={16} />
-              </Button>
-            </a>
-            <Link to="/login">
-              <Button variant="secondary">Login</Button>
-            </Link>
-            <Link to="/register">
-              <Button>
-                Get started <ArrowRight size={16} />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#F0F4FF] via-background to-surface">
-          <div className="absolute inset-0">
-            <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-primary/20 blur-3xl" />
-            <div className="absolute top-28 -right-24 h-[520px] w-[520px] rounded-full bg-accent/20 blur-3xl" />
+    <div className="min-h-screen bg-white text-text-primary">
+      <Navbar />
+      <main className="mx-auto max-w-6xl px-4 pt-28 pb-20">
+        <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+          <div className="space-y-8">
+            <div className="inline-flex rounded-full border border-border px-3 py-1 text-sm text-text-secondary">
+              TagWraps Sec for manufacturers
+            </div>
+            <div>
+              <h1 className="max-w-2xl text-5xl font-semibold tracking-tight leading-tight">
+                A simpler way to authenticate physical products.
+              </h1>
+              <p className="mt-4 max-w-xl text-base text-text-secondary leading-8">
+                Manage product identity, generate NFC tags, and verify every scan from a calm, secure dashboard.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link to="/register">
+                <Button className="w-full sm:w-auto">Create account</Button>
+              </Link>
+              <Link to="/login">
+                <Button variant="secondary" className="w-full sm:w-auto">Sign in</Button>
+              </Link>
+            </div>
           </div>
 
-          <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-12">
-            <div className="grid lg:grid-cols-2 gap-10 items-center rounded-2xl border border-border bg-surface p-8 shadow-card">
+          <div className="rounded-[24px] border border-border bg-surface p-6 shadow-card">
+            <div className="flex items-center justify-between mb-6">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs text-primary">
-                  <span className="h-2 w-2 rounded-full bg-primary" />
-                  TagWraps Sec · Manufacturer platform
-                </div>
-
-                <h1 className="mt-4 text-4xl sm:text-5xl font-heading font-bold tracking-tight text-text-primary">
-                  Secure your supply chain
-                  <br className="hidden sm:block" />
-                  with cryptographic NFC tags.
-                </h1>
-
-                <p className="mt-5 text-base sm:text-lg text-text-secondary leading-relaxed">
-                  This is the operating platform manufacturers use to register products, generate signed
-                  NFC identities, monitor scans, and handle fraud alerts in real time.
-                </p>
-
-                <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                  <Link to="/register">
-                    <Button className="w-full sm:w-auto">
-                      Create account <ArrowRight size={16} />
-                    </Button>
-                  </Link>
-                  <a href="https://tagwraps.vercel.app/" target="_blank" rel="noreferrer">
-                    <Button variant="secondary" className="w-full sm:w-auto">
-                      How it works <PlayCircle size={16} />
-                    </Button>
-                  </a>
-                </div>
-
-                <div className="mt-7 grid grid-cols-3 gap-3">
-                  <Stat k="5%+" v="counterfeit medicines" s="WHO estimate" />
-                  <Stat k="৳25B+" v="lost annually by brands" s="South Asia" />
-                  <Stat k="1 in 5" v="consumer products may be fake" s="Bangladesh" />
-                </div>
-
-                <div className="mt-6 rounded-xl border border-primary/20 bg-primary/5 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                  <div>
-                    <div className="text-sm font-medium text-primary">Public customer verification page</div>
-                    <div className="text-sm text-text-secondary">
-                      Customers tap a tag and open <span className="font-medium">/verify/&lt;tag_uid&gt;</span>.
-                    </div>
-                  </div>
-                  <Link to="/verify/demo">
-                    <Button variant="secondary">Preview verify UI</Button>
-                  </Link>
-                </div>
+                <p className="text-sm text-text-secondary">Dashboard preview</p>
+                <h2 className="mt-2 text-lg font-semibold text-text-primary">Live product management</h2>
               </div>
-
-              <div className="rounded-xl bg-gradient-to-br from-primary/5 via-accent/5 to-surface border border-border shadow-card p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <div className="text-sm font-medium text-text-primary">Authentication layer</div>
-                    <div className="text-xs text-text-secondary">Designed for high-trust industries</div>
-                  </div>
-                  <div className="h-9 w-9 rounded-lg bg-primary/10 border border-primary/20 grid place-items-center">
-                    <ShieldCheck className="text-primary" size={18} />
-                  </div>
-                </div>
-
-                <div className="mt-5 grid grid-cols-2 gap-4">
-                  <Feature
-                    icon={<ShieldCheck className="text-success" />}
-                    title="ECDSA verified"
-                    body="P-256 signatures validate authenticity server-side."
-                  />
-                  <Feature
-                    icon={<KeyRound className="text-primary" />}
-                    title="Secure sessions"
-                    body="Access + refresh tokens stored in httpOnly cookies."
-                  />
-                  <Feature
-                    icon={<Smartphone className="text-accent" />}
-                    title="3-second checks"
-                    body="Public verify page for tap-to-verify customer flow."
-                  />
-                  <Feature
-                    icon={<Activity className="text-danger" />}
-                    title="Fraud alerts"
-                    body="Duplicate scans and invalid signatures raise alerts."
-                  />
-                </div>
-
-                <div className="mt-5 rounded-lg border border-primary/15 bg-surface/70 p-4">
-                  <div className="text-xs text-text-secondary">Fastest path</div>
-                  <div className="mt-1 text-sm font-semibold text-text-primary">
-                    Tap → Verify → Trust
-                  </div>
-                  <div className="mt-2 text-sm text-text-secondary">
-                    No app required for customers. NFC opens a link, and TagWraps verifies instantly.
-                  </div>
-                </div>
+              <div className="h-10 w-10 rounded-xl bg-primary/10 grid place-items-center text-primary">TW</div>
+            </div>
+            <div className="space-y-4">
+              <div className="rounded-3xl border border-border bg-white p-4 text-sm text-text-primary">
+                <div className="font-semibold">Premium watch</div>
+                <div className="text-xs text-text-secondary mt-1">SKU • TW-0401</div>
+              </div>
+              <div className="rounded-3xl border border-border bg-white p-4 text-sm text-text-primary">
+                <div className="font-semibold">Smart charger</div>
+                <div className="text-xs text-text-secondary mt-1">SKU • TW-0467</div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 pb-12">
-          <div className="rounded-xl bg-primary/5 border border-border shadow-card p-6 sm:p-8">
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <div>
-                <h2 className="text-2xl font-heading font-bold">How TagWraps Sec works</h2>
-                <p className="mt-2 text-sm text-text-secondary">
-                  TagWraps Sec is the operational platform. The separate info site demonstrates the story and process.
-                </p>
-              </div>
-              <a href="https://tagwraps.vercel.app/" target="_blank" rel="noreferrer">
-                <Button variant="secondary">
-                  Read the story <ArrowRight size={16} />
-                </Button>
-              </a>
-            </div>
+        <section className="mt-20 space-y-8">
+          <div className="max-w-2xl">
+            <p className="text-sm uppercase tracking-[0.2em] text-text-secondary">How it works</p>
+            <h2 className="mt-4 text-3xl font-semibold text-text-primary">Three clear steps to trusted products.</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            <Feature title="Register products" description="Keep a clean record for every SKU, batch, and manufacturing detail." />
+            <Feature title="Generate NFC tags" description="Create signed NFC identities and prepare them for physical tagging." />
+            <Feature title="Verify scans" description="Use the public verification flow to confirm authenticity in the field." />
+          </div>
+        </section>
 
-            <div className="mt-6 grid md:grid-cols-3 gap-4">
-              <Step
-                n="1"
-                title="Register products"
-                body="Create product records, images, and batches inside TagWraps Sec."
-              />
-              <Step
-                n="2"
-                title="Generate tags"
-                body="Generate tag UIDs and ECDSA signatures, then write to physical NFC chips."
-              />
-              <Step
-                n="3"
-                title="Monitor scans + alerts"
-                body="View scan logs, detect suspicious duplicates, and resolve fraud alerts quickly."
-              />
+        <section className="mt-20 grid gap-10 lg:grid-cols-[1fr_0.9fr] items-start">
+          <div className="space-y-6">
+            <p className="text-sm uppercase tracking-[0.2em] text-text-secondary">Why it matters</p>
+            <h2 className="text-3xl font-semibold text-text-primary">A reliable control layer for physical products.</h2>
+            <p className="max-w-xl text-base text-text-secondary leading-8">
+              TagWraps Sec is built for manufacturers who need a clean, secure way to authenticate items without clutter or noise.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Stat title="Built for trust" description="Authentication with real cryptographic records." />
+              <Stat title="Designed for clarity" description="A calm interface focused on your workflow." />
             </div>
+          </div>
+          <div className="rounded-[24px] border border-border bg-surface p-6 shadow-card">
+            <div className="rounded-3xl border border-border bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.25em] text-text-secondary">Product preview</p>
+              <h3 className="mt-4 text-lg font-semibold text-text-primary">Product list</h3>
+              <div className="mt-6 space-y-3">
+                <div className="rounded-2xl border border-border bg-surface p-4 text-sm text-text-primary">Premium watch • TW-0401</div>
+                <div className="rounded-2xl border border-border bg-surface p-4 text-sm text-text-primary">Smart charger • TW-0467</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-20 rounded-[24px] border border-border bg-surface p-10 text-center">
+          <p className="text-sm uppercase tracking-[0.2em] text-text-secondary">Ready to start</p>
+          <h2 className="mt-4 text-3xl font-semibold text-text-primary">Bring secure product authentication into one place.</h2>
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Link to="/register">
+              <Button className="w-full sm:w-auto">Create account</Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="secondary" className="w-full sm:w-auto">Sign in</Button>
+            </Link>
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-4 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <BrandMark />
-          <div className="text-sm text-text-secondary">
-            TagWraps Sec is infrastructure — the authentication layer for physical commerce.
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
 
-function Step({ n, title, body }) {
+function Feature({ title, description }) {
   return (
-    <div className="rounded-lg border border-border bg-surface p-4">
-      <div className="flex items-center gap-3">
-        <div className="h-9 w-9 rounded-lg bg-primary text-white grid place-items-center font-bold">
-          {n}
-        </div>
-        <div className="font-heading font-bold">{title}</div>
-      </div>
-      <div className="mt-2 text-sm text-text-secondary">{body}</div>
+    <div className="rounded-[24px] border border-border bg-surface p-6">
+      <h3 className="text-lg font-semibold text-text-primary">{title}</h3>
+      <p className="mt-3 text-sm text-text-secondary leading-7">{description}</p>
     </div>
   )
 }
 
-function Feature({ icon, title, body }) {
+function Stat({ title, description }) {
   return (
-    <div className="bg-surface border border-border rounded-lg p-4 shadow-card">
-      {icon}
-      <div className="mt-2 font-medium">{title}</div>
-      <div className="text-sm text-text-secondary">{body}</div>
+    <div className="rounded-[24px] border border-border bg-white p-5 text-left">
+      <p className="text-sm font-semibold text-text-primary">{title}</p>
+      <p className="mt-2 text-sm text-text-secondary leading-7">{description}</p>
     </div>
   )
 }
 
-function Stat({ k, v, s }) {
-  return (
-    <div className="rounded-lg border border-border bg-surface p-3">
-      <div className="text-lg font-heading font-bold text-text-primary">{k}</div>
-      <div className="text-xs text-primary">{v}</div>
-      <div className="mt-1 text-[11px] text-text-secondary">{s}</div>
-    </div>
-  )
-}
 
