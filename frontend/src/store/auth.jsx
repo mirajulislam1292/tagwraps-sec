@@ -9,6 +9,8 @@ export function AuthProvider({ children }) {
 
   async function loadMe() {
     try {
+      // Ensure CSRF cookie is set before any form POSTs.
+      await api.get('/health')
       const res = await api.get('/api/v1/auth/me')
       setUser(res.data.user)
     } catch {

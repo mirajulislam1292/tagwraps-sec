@@ -1,0 +1,21 @@
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Vercel / Railway / build artifacts
+.vercel/
+frontend/.vercel/
+frontend/build/
+frontend/dist/
+backend/dist/
+
+# Local env (never commit)
+backend/.env
+frontend/.env
+.env
+.env.*
+
+# Ignore leftover nested folder if present
+tagwraps-sec/
+

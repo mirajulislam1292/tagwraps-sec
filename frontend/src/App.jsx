@@ -9,6 +9,7 @@ import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage.jsx'
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage.jsx'
 
 import { VerifyPublicPage } from './pages/public/VerifyPublicPage.jsx'
+import { HomePage } from './pages/public/HomePage.jsx'
 import { NotFoundPage } from './pages/system/NotFoundPage.jsx'
 import { UnauthorizedPage } from './pages/system/UnauthorizedPage.jsx'
 import { ErrorPage } from './pages/system/ErrorPage.jsx'
@@ -40,7 +41,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<HomePage />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
