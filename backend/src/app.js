@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import { ensureEcdsaKeypairInEnv } from "./utils/keypair.js";
 import { setCsrfCookie, requireCsrf } from "./middleware/csrf.middleware.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.middleware.js";
+import { prisma } from "./prisma/client.js";
 
 import { authRouter } from "./routes/auth.routes.js";
 import { verifyRouter } from "./routes/verify.routes.js";
@@ -37,6 +38,19 @@ export function createApp() {
   app.use(setCsrfCookie);
 
   app.get("/health", (req, res) => res.json({ ok: true }));
+  app.get("/health/db", async (req, res) => {
+    try {
+      // Simple connectivity check; does not expose secrets.
+      await prisma.$queryRaw`SELECT 1`;
+      res.json({ ok: true, db: "connected" });
+    } catch (e) {
+      res.status(500).json({
+        ok: false,
+        db: "error",
+        error: e?.message || "DB connection failed",
+      });
+    }
+  });
 
   // Public verification API (no cookies/CSRF required)
   app.use("/api/v1/verify", verifyRouter);
