@@ -6,9 +6,14 @@ body {
 }
 
 body {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #f8f9fa;
-  color: #111827;
+  font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #F7F8FC;
+  color: #0D0F1A;
+  transition: all 0.2s ease;
+}
+
+.font-heading {
+  font-family: "Syne", system-ui, sans-serif;
 }
 
 /* subtle nicer scrollbar on desktop */
