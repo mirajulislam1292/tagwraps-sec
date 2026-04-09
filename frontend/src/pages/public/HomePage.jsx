@@ -13,8 +13,8 @@ import {
 
 export function HomePage() {
   return (
-    <div className="min-h-screen bg-primary/10">
-      <header className="sticky top-0 z-20 backdrop-blur bg-primary/15 border-b border-primary/20 shadow-sm">
+    <div className="min-h-screen bg-[#E9F2FF]">
+      <header className="sticky top-0 z-20 backdrop-blur bg-[#E9F2FF] border-b border-[#0047AB]/15 shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-4">
           <BrandMark />
           <div className="flex items-center gap-2">
@@ -37,19 +37,19 @@ export function HomePage() {
       </header>
 
       <main>
-        <section className="relative overflow-hidden bg-primary/10">
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#E9F2FF] via-[#F4F8FF] to-white">
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-white to-background" />
-            <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-primary/40 blur-3xl" />
-            <div className="absolute top-28 -right-24 h-[520px] w-[520px] rounded-full bg-primary/35 blur-3xl" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#D7E9FF] via-[#EFF6FF] to-white" />
+            <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-[#0047AB]/30 blur-3xl" />
+            <div className="absolute top-28 -right-24 h-[520px] w-[520px] rounded-full bg-[#0047AB]/25 blur-3xl" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0047AB]/35 to-transparent" />
           </div>
 
           <div className="relative mx-auto max-w-6xl px-4 pt-12 pb-12">
-            <div className="grid lg:grid-cols-2 gap-10 items-center rounded-[2rem] border border-primary/15 bg-white/95 p-8 shadow-card">
+            <div className="grid lg:grid-cols-2 gap-10 items-center rounded-[2rem] border border-[#0047AB]/15 bg-white/95 p-8 shadow-card">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/15 px-3 py-1 text-xs text-primary">
-                <span className="h-2 w-2 rounded-full bg-primary" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#0047AB]/20 bg-[#0047AB]/10 px-3 py-1 text-xs text-[#0047AB]">
+                <span className="h-2 w-2 rounded-full bg-[#0047AB]" />
                 TagWraps Sec · Manufacturer platform
               </div>
 
@@ -83,7 +83,7 @@ export function HomePage() {
                 <Stat k="1 in 5" v="consumer products may be fake" s="Bangladesh" />
               </div>
 
-              <div className="mt-6 rounded-2xl border border-primary/20 bg-primary/15 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="mt-6 rounded-2xl border border-[#0047AB]/20 bg-[#0047AB]/10 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-bold text-primary">Public customer verification page</div>
                   <div className="text-sm text-text-secondary">
@@ -96,7 +96,7 @@ export function HomePage() {
               </div>
             </div>
 
-            <div className="rounded-2xl bg-gradient-to-br from-primary/25 via-primary/10 to-white border border-primary/15 shadow-card p-6">
+            <div className="rounded-2xl bg-gradient-to-br from-[#CCE1FF] via-[#E7F0FF] to-white border border-[#0047AB]/15 shadow-card p-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-bold text-text-primary">Authentication layer</div>
@@ -145,7 +145,7 @@ export function HomePage() {
         </section>
 
         <section className="mx-auto max-w-6xl px-4 pb-12">
-          <div className="rounded-2xl bg-primary/10 border border-primary/15 shadow-card p-6 sm:p-8">
+          <div className="rounded-2xl bg-[#E9F2FF] border border-[#0047AB]/15 shadow-card p-6 sm:p-8">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-black">How TagWraps Sec works</h2>
@@ -196,7 +196,7 @@ export function HomePage() {
 
 function Step({ n, title, body }) {
   return (
-    <div className="rounded-xl border border-primary/15 bg-primary/5 p-4">
+    <div className="rounded-xl border border-[#0047AB]/15 bg-[#E9F2FF] p-4">
       <div className="flex items-center gap-3">
         <div className="h-9 w-9 rounded-xl bg-primary text-white grid place-items-center font-black">
           {n}
@@ -222,10 +222,10 @@ function Feature({ icon, title, body }) {
 
 function Stat({ k, v, s }) {
   return (
-    <div className="rounded-xl border border-primary/15 bg-primary/5 p-3">
+    <div className="rounded-xl border border-[#0047AB]/15 bg-[#E9F2FF] p-3">
       <div className="text-lg font-black text-text-primary">{k}</div>
-      <div className="text-xs text-primary/80">{v}</div>
-      <div className="mt-1 text-[11px] text-primary/60">{s}</div>
+      <div className="text-xs text-[#0047AB]/80">{v}</div>
+      <div className="mt-1 text-[11px] text-[#0047AB]/60">{s}</div>
     </div>
   )
 }

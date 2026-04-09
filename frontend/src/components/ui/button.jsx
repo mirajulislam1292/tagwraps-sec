@@ -10,9 +10,9 @@ export function Button({
   const base =
     'inline-flex items-center justify-center gap-2 font-medium rounded-md transition disabled:opacity-60 disabled:cursor-not-allowed'
   const variants = {
-    primary: 'bg-primary text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/30',
-    secondary: 'bg-white border border-primary/20 text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/30',
-    ghost: 'bg-transparent text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/20',
+    primary: 'bg-[#0047AB] text-white hover:bg-[#003380] focus:outline-none focus:ring-2 focus:ring-[#0047AB]/30',
+    secondary: 'bg-white border border-[#0047AB]/20 text-[#0047AB] hover:bg-[#0047AB]/10 focus:outline-none focus:ring-2 focus:ring-[#0047AB]/20',
+    ghost: 'bg-transparent text-[#0047AB] hover:bg-[#0047AB]/10 focus:outline-none focus:ring-2 focus:ring-[#0047AB]/20',
     danger: 'bg-danger text-white hover:brightness-95',
   }
   const sizes = {
