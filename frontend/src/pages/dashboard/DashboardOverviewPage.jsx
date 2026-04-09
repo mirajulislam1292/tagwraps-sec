@@ -1,20 +1,45 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card'
+import { PageHeader } from '../../components/layout/PageHeader'
+import { Button } from '../../components/ui/button'
+import { Link } from 'react-router-dom'
+import { ArrowRight, ShieldAlert, Cpu, Box } from 'lucide-react'
 
 export function DashboardOverviewPage() {
   return (
     <div className="space-y-6">
-      <div className="flex items-end justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-sm text-text-secondary">Overview of products, tags, scans, and alerts.</p>
-        </div>
-      </div>
+      <PageHeader
+        eyebrow="Manufacturer"
+        title="Dashboard"
+        subtitle="Overview of products, tags, scans, and alerts."
+        right={
+          <>
+            <Link to="/dashboard/products/new">
+              <Button variant="secondary">New product</Button>
+            </Link>
+            <Link to="/dashboard/tags/generate">
+              <Button>
+                Generate tags <ArrowRight size={16} />
+              </Button>
+            </Link>
+          </>
+        }
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        {['Total Products', 'Total NFC Tags', 'Total Scans', 'Active Fraud Alerts'].map((t) => (
-          <Card key={t}>
+        {[
+          { t: 'Total Products', icon: <Box size={16} className="text-primary" /> },
+          { t: 'Total NFC Tags', icon: <Cpu size={16} className="text-primary" /> },
+          { t: 'Total Scans', icon: <ArrowRight size={16} className="text-primary" /> },
+          { t: 'Active Fraud Alerts', icon: <ShieldAlert size={16} className="text-danger" /> },
+        ].map((x) => (
+          <Card key={x.t} className="overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-sm">{t}</CardTitle>
+              <div className="flex items-center justify-between gap-3">
+                <CardTitle className="text-sm">{x.t}</CardTitle>
+                <div className="h-8 w-8 rounded-xl border border-border bg-white grid place-items-center">
+                  {x.icon}
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-black">—</div>

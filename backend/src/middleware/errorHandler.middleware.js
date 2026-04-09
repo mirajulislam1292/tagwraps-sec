@@ -4,6 +4,14 @@ export function notFoundHandler(req, res) {
 
 export function errorHandler(err, req, res, next) {
   // eslint-disable-line no-unused-vars
+  // Zod validation errors should be 400, not 500.
+  if (err?.name === "ZodError") {
+    return res.status(400).json({
+      error: "Validation failed",
+      details: err.issues?.map((i) => ({ path: i.path?.join("."), message: i.message })) || [],
+    });
+  }
+
   const status = err.statusCode || err.status || 500;
   const message =
     status >= 500 ? "Internal Server Error" : err.message || "Request failed";

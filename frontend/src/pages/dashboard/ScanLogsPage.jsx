@@ -1,20 +1,26 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card'
+import { PageHeader } from '../../components/layout/PageHeader'
+import { EmptyState } from '../../components/ui/empty-state'
+import { Activity } from 'lucide-react'
 
 export function ScanLogsPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Scan Logs</h1>
-        <p className="text-sm text-text-secondary">
-          Filterable scan history with CSV export and stats.
-        </p>
-      </div>
+      <PageHeader
+        eyebrow="Telemetry"
+        title="Scan Logs"
+        subtitle="Filterable scan history with export and stats."
+      />
       <Card>
         <CardHeader>
           <CardTitle>All scans</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-sm text-text-secondary">Coming next.</div>
+          <EmptyState
+            icon={<Activity size={18} />}
+            title="No scans recorded"
+            description="Once customers verify tags, scans will appear here with device/location metadata."
+          />
         </CardContent>
       </Card>
     </div>
