@@ -1,6 +1,12 @@
 import clsx from 'clsx'
 
-export function Button({ variant = 'primary', size = 'md', className, ...props }) {
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  className,
+  children,
+  ...props
+}) {
   const base =
     'inline-flex items-center justify-center gap-2 font-medium rounded-md transition disabled:opacity-60 disabled:cursor-not-allowed'
   const variants = {
@@ -18,7 +24,9 @@ export function Button({ variant = 'primary', size = 'md', className, ...props }
     <button
       className={clsx(base, variants[variant], sizes[size], className)}
       {...props}
-    />
+    >
+      {children}
+    </button>
   )
 }
 

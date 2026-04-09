@@ -9,12 +9,7 @@ import { Button } from '../../components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card'
 import { Input } from '../../components/ui/input'
 
-const password = z
-  .string()
-  .min(8)
-  .regex(/[A-Z]/)
-  .regex(/[0-9]/)
-  .regex(/[^A-Za-z0-9]/)
+const password = z.string().min(8, 'Password must be at least 8 characters')
 
 const schema = z
   .object({
@@ -72,7 +67,7 @@ export function ResetPasswordPage() {
                   <p className="text-sm text-danger mt-1">{errors.confirm_password.message}</p>
                 ) : null}
               </div>
-              <Button className="w-full" disabled={isSubmitting}>
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? 'Updating…' : 'Update password'}
               </Button>
             </form>

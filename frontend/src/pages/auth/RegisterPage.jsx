@@ -9,12 +9,7 @@ import { Button } from '../../components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card'
 import { Input } from '../../components/ui/input'
 
-const password = z
-  .string()
-  .min(8)
-  .regex(/[A-Z]/)
-  .regex(/[0-9]/)
-  .regex(/[^A-Za-z0-9]/)
+const password = z.string().min(8, 'Password must be at least 8 characters')
 
 const schema = z
   .object({
@@ -85,9 +80,6 @@ export function RegisterPage() {
             <div>
               <label className="text-sm font-medium">Password</label>
               <Input type="password" {...register('password')} />
-              <p className="text-xs text-text-secondary mt-1">
-                Min 8 chars, 1 uppercase, 1 number, 1 special character.
-              </p>
               {errors.password ? (
                 <p className="text-sm text-danger mt-1">{errors.password.message}</p>
               ) : null}
