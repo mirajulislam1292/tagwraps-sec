@@ -6,7 +6,9 @@ function getCookie(name) {
 }
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:4000',
+  // In production we prefer same-origin requests so Vercel can rewrite `/api/*` to the backend.
+  // This makes cookies + CSRF work reliably.
+  baseURL: import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:4000'),
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 })

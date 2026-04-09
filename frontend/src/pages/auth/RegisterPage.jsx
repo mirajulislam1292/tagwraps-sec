@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { api } from '../../services/api'
-import { BrandMark } from '../../components/layout/BrandMark'
+import { AuthShell } from '../../components/layout/AuthShell'
 import { Button } from '../../components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card'
 import { Input } from '../../components/ui/input'
@@ -55,83 +55,79 @@ export function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background grid place-items-center p-4">
-      <div className="w-full max-w-md">
-        <div className="mb-6 flex justify-center">
-          <BrandMark />
-        </div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Create manufacturer account</CardTitle>
-            <p className="text-sm text-text-secondary mt-1">
-              Register your company to start generating TagWraps NFC identities.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <label className="text-sm font-medium">Full name</label>
-                <Input {...register('full_name')} />
-                {errors.full_name ? (
-                  <p className="text-sm text-danger mt-1">{errors.full_name.message}</p>
-                ) : null}
-              </div>
-              <div>
-                <label className="text-sm font-medium">Email</label>
-                <Input {...register('email')} />
-                {errors.email ? (
-                  <p className="text-sm text-danger mt-1">{errors.email.message}</p>
-                ) : null}
-              </div>
-              <div>
-                <label className="text-sm font-medium">Password</label>
-                <Input type="password" {...register('password')} />
-                <p className="text-xs text-text-secondary mt-1">
-                  Min 8 chars, 1 uppercase, 1 number, 1 special character.
-                </p>
-                {errors.password ? (
-                  <p className="text-sm text-danger mt-1">{errors.password.message}</p>
-                ) : null}
-              </div>
-              <div>
-                <label className="text-sm font-medium">Confirm password</label>
-                <Input type="password" {...register('confirm_password')} />
-                {errors.confirm_password ? (
-                  <p className="text-sm text-danger mt-1">
-                    {errors.confirm_password.message}
-                  </p>
-                ) : null}
-              </div>
-              <div>
-                <label className="text-sm font-medium">Company name</label>
-                <Input {...register('company_name')} />
-                {errors.company_name ? (
-                  <p className="text-sm text-danger mt-1">{errors.company_name.message}</p>
-                ) : null}
-              </div>
-              <div>
-                <label className="text-sm font-medium">Country</label>
-                <Input placeholder="Bangladesh" {...register('country')} />
-                {errors.country ? (
-                  <p className="text-sm text-danger mt-1">{errors.country.message}</p>
-                ) : null}
-              </div>
-
-              <Button className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? 'Creating…' : 'Create account'}
-              </Button>
-
-              <p className="text-sm text-text-secondary text-center">
-                Already have an account?{' '}
-                <Link className="text-primary hover:underline" to="/login">
-                  Sign in
-                </Link>
+    <AuthShell
+      title="Start securing your products."
+      subtitle="Create a manufacturer account to register products, generate NFC tag identities, and monitor scans and fraud alerts."
+    >
+      <Card className="backdrop-blur bg-white/80">
+        <CardHeader>
+          <CardTitle>Create manufacturer account</CardTitle>
+          <p className="text-sm text-text-secondary mt-1">
+            Register your company to start generating TagWraps NFC identities.
+          </p>
+        </CardHeader>
+        <CardContent>
+          <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <label className="text-sm font-medium">Full name</label>
+              <Input {...register('full_name')} />
+              {errors.full_name ? (
+                <p className="text-sm text-danger mt-1">{errors.full_name.message}</p>
+              ) : null}
+            </div>
+            <div>
+              <label className="text-sm font-medium">Email</label>
+              <Input {...register('email')} />
+              {errors.email ? (
+                <p className="text-sm text-danger mt-1">{errors.email.message}</p>
+              ) : null}
+            </div>
+            <div>
+              <label className="text-sm font-medium">Password</label>
+              <Input type="password" {...register('password')} />
+              <p className="text-xs text-text-secondary mt-1">
+                Min 8 chars, 1 uppercase, 1 number, 1 special character.
               </p>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+              {errors.password ? (
+                <p className="text-sm text-danger mt-1">{errors.password.message}</p>
+              ) : null}
+            </div>
+            <div>
+              <label className="text-sm font-medium">Confirm password</label>
+              <Input type="password" {...register('confirm_password')} />
+              {errors.confirm_password ? (
+                <p className="text-sm text-danger mt-1">{errors.confirm_password.message}</p>
+              ) : null}
+            </div>
+            <div>
+              <label className="text-sm font-medium">Company name</label>
+              <Input {...register('company_name')} />
+              {errors.company_name ? (
+                <p className="text-sm text-danger mt-1">{errors.company_name.message}</p>
+              ) : null}
+            </div>
+            <div>
+              <label className="text-sm font-medium">Country</label>
+              <Input placeholder="Bangladesh" {...register('country')} />
+              {errors.country ? (
+                <p className="text-sm text-danger mt-1">{errors.country.message}</p>
+              ) : null}
+            </div>
+
+            <Button className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? 'Creating…' : 'Create account'}
+            </Button>
+
+            <p className="text-sm text-text-secondary text-center">
+              Already have an account?{' '}
+              <Link className="text-primary hover:underline" to="/login">
+                Sign in
+              </Link>
+            </p>
+          </form>
+        </CardContent>
+      </Card>
+    </AuthShell>
   )
 }
 
