@@ -2,6 +2,8 @@
 
 Full-stack management + authentication platform for TagWraps (smart NFC-based product authentication).
 
+Note: Colors updated to match the marketing site for consistency.
+
 ## Tech stack
 
 - **Frontend**: React (Vite), Tailwind CSS, shadcn-style UI components, React Router v6, Axios, Recharts, React Hook Form + Zod
