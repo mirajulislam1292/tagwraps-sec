@@ -75,7 +75,7 @@ export function LoginPage() {
               </Link>
             </div>
 
-            <Button className="w-full" disabled={isSubmitting}>
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? 'Signing in…' : 'Sign in'}
             </Button>
 

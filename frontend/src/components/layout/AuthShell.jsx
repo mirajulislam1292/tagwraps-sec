@@ -25,7 +25,7 @@ export function AuthShell({ title, subtitle, children }) {
           </div>
         </div>
 
-        <div className="grid place-items-center">
+        <div className="flex items-start justify-center py-6 lg:py-0">
           <div className="w-full max-w-md">
             <div className="mb-6 flex justify-center lg:hidden">
               <BrandMark />
