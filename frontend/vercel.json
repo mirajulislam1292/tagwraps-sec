@@ -11,6 +11,10 @@
     {
       "source": "/health/",
       "destination": "https://tagwraps-sec.onrender.com/health"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ]
 }
