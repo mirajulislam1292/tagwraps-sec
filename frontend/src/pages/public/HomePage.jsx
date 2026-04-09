@@ -39,9 +39,10 @@ export function HomePage() {
       <main>
         <section className="relative overflow-hidden">
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-white to-background" />
-            <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
-            <div className="absolute top-40 -right-24 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-white to-background" />
+            <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-primary/35 blur-3xl" />
+            <div className="absolute top-28 -right-24 h-[520px] w-[520px] rounded-full bg-primary/30 blur-3xl" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
           </div>
 
           <div className="relative mx-auto max-w-6xl px-4 pt-12 pb-12">
