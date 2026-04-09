@@ -14,7 +14,7 @@ import {
 export function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-20 backdrop-blur bg-white/70 border-b border-border">
+      <header className="sticky top-0 z-20 backdrop-blur bg-white/90 border-b border-primary/10 shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-4">
           <BrandMark />
           <div className="flex items-center gap-2">
@@ -37,7 +37,7 @@ export function HomePage() {
       </header>
 
       <main>
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden bg-primary/5">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-white to-background" />
             <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-primary/35 blur-3xl" />
@@ -46,7 +46,7 @@ export function HomePage() {
           </div>
 
           <div className="relative mx-auto max-w-6xl px-4 pt-12 pb-12">
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div className="grid lg:grid-cols-2 gap-10 items-center rounded-[2rem] border border-primary/15 bg-white/95 p-8 shadow-card">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-3 py-1 text-xs text-text-secondary">
                 <span className="h-2 w-2 rounded-full bg-primary" />
@@ -84,7 +84,7 @@ export function HomePage() {
                 <Stat k="1 in 5" v="consumer products may be fake" s="Bangladesh" />
               </div>
 
-              <div className="mt-6 rounded-2xl border border-primary/15 bg-white/70 backdrop-blur p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="mt-6 rounded-2xl border border-primary/15 bg-primary/10 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-bold text-text-primary">Public customer verification page</div>
                   <div className="text-sm text-text-secondary">
@@ -146,7 +146,7 @@ export function HomePage() {
         </section>
 
         <section className="mx-auto max-w-6xl px-4 pb-12">
-          <div className="rounded-2xl bg-surface border border-border shadow-card p-6 sm:p-8">
+          <div className="rounded-2xl bg-primary/10 border border-primary/15 shadow-card p-6 sm:p-8">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-black">How TagWraps Sec works</h2>
@@ -197,7 +197,7 @@ export function HomePage() {
 
 function Step({ n, title, body }) {
   return (
-    <div className="rounded-xl border border-border bg-background p-4">
+    <div className="rounded-xl border border-primary/15 bg-primary/5 p-4">
       <div className="flex items-center gap-3">
         <div className="h-9 w-9 rounded-xl bg-primary text-white grid place-items-center font-black">
           {n}
