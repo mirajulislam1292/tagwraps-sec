@@ -1,0 +1,291 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  MANUFACTURER
+  STAFF
+}
+
+enum SubscriptionPlanName {
+  FREE
+  BASIC
+  PRO
+  ENTERPRISE
+}
+
+enum ScanResult {
+  GENUINE
+  FAKE
+  FLAGGED
+}
+
+enum FraudAlertType {
+  DUPLICATE_SCAN
+  INVALID_SIGNATURE
+  CLONED_TAG
+  SUSPICIOUS_LOCATION
+}
+
+enum TagBatchStatus {
+  PENDING
+  PROCESSING
+  COMPLETE
+}
+
+enum NotificationType {
+  INFO
+  WARNING
+  ALERT
+  SUCCESS
+}
+
+model User {
+  id          String    @id @default(uuid())
+  email       String    @unique
+  password    String
+  full_name   String
+  role        UserRole
+  is_verified Boolean   @default(false)
+  is_active   Boolean   @default(true)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  manufacturer                 Manufacturer?
+  approved_manufacturers       Manufacturer[] @relation("ManufacturerApprovedBy")
+  resolved_fraud_alerts        FraudAlert[]   @relation("FraudAlertResolvedBy")
+  tag_generation_batches       TagGenerationBatch[] @relation("TagBatchCreatedBy")
+  notifications                Notification[]
+  sessions                     UserSession[]
+
+  email_verification_otps      EmailVerificationOtp[]
+  password_reset_tokens        PasswordResetToken[]
+}
+
+model Manufacturer {
+  id                   String               @id @default(uuid())
+  user_id              String               @unique
+  company_name         String
+  company_logo_url     String?
+  country              String
+  city                 String?
+  address              String?
+  phone                String?
+  trade_license_number String?
+  is_approved          Boolean              @default(false)
+  approved_by          String?
+  approved_at          DateTime?
+  subscription_plan    SubscriptionPlanName @default(FREE)
+  tags_remaining       Int                  @default(0)
+  created_at           DateTime             @default(now())
+  updated_at           DateTime             @updatedAt
+
+  api_key_hash         String?
+  api_key_last4        String?
+  api_key_created_at   DateTime?
+
+  user                 User                 @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  approver             User?                @relation("ManufacturerApprovedBy", fields: [approved_by], references: [id])
+  products             Product[]
+  nfc_tags             NfcTag[]
+  scan_logs            ScanLog[]
+  fraud_alerts         FraudAlert[]
+  tag_batches          TagGenerationBatch[]
+
+  @@index([subscription_plan])
+  @@index([is_approved])
+}
+
+model ProductCategory {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  created_at DateTime @default(now())
+
+  products   Product[]
+}
+
+model Product {
+  id                String   @id @default(uuid())
+  manufacturer_id   String
+  category_id       String
+  name              String
+  brand             String
+  description       String?
+  image_url         String?
+  batch_number      String
+  manufacture_date  DateTime?
+  expiry_date       DateTime?
+  country_of_origin String?
+  is_active         Boolean  @default(true)
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  manufacturer Manufacturer   @relation(fields: [manufacturer_id], references: [id], onDelete: Cascade)
+  category     ProductCategory @relation(fields: [category_id], references: [id])
+  nfc_tags     NfcTag[]
+  tag_batches  TagGenerationBatch[]
+
+  @@index([manufacturer_id])
+  @@index([category_id])
+  @@index([is_active])
+}
+
+model NfcTag {
+  id              String   @id @default(uuid())
+  tag_uid         String   @unique
+  product_id      String
+  manufacturer_id String
+  ecdsa_signature String
+  signed_payload  String
+  is_locked       Boolean  @default(false)
+  is_active       Boolean  @default(true)
+  is_flagged      Boolean  @default(false)
+  flag_reason     String?
+  generated_at    DateTime @default(now())
+  locked_at       DateTime?
+  created_at      DateTime @default(now())
+
+  product      Product      @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  manufacturer Manufacturer @relation(fields: [manufacturer_id], references: [id], onDelete: Cascade)
+  scan_logs    ScanLog[]
+  fraud_alerts FraudAlert[]
+
+  @@index([product_id])
+  @@index([manufacturer_id])
+  @@index([is_locked])
+  @@index([is_flagged])
+}
+
+model ScanLog {
+  id                        String     @id @default(uuid())
+  tag_uid                   String
+  nfc_tag_id                String
+  scan_result               ScanResult
+  scanner_ip                String?
+  scanner_device            String?
+  scanner_location_country  String?
+  scanner_location_city     String?
+  scan_count_at_time        Int
+  created_at                DateTime   @default(now())
+
+  nfc_tag       NfcTag       @relation(fields: [nfc_tag_id], references: [id], onDelete: Cascade)
+  manufacturer  Manufacturer? @relation(fields: [manufacturer_id], references: [id])
+  manufacturer_id String?
+
+  @@index([tag_uid])
+  @@index([nfc_tag_id])
+  @@index([created_at])
+}
+
+model FraudAlert {
+  id           String         @id @default(uuid())
+  nfc_tag_id   String
+  alert_type   FraudAlertType
+  details      String
+  is_resolved  Boolean        @default(false)
+  resolved_by  String?
+  resolved_at  DateTime?
+  created_at   DateTime       @default(now())
+
+  nfc_tag      NfcTag         @relation(fields: [nfc_tag_id], references: [id], onDelete: Cascade)
+  resolver     User?          @relation("FraudAlertResolvedBy", fields: [resolved_by], references: [id])
+  manufacturer Manufacturer?  @relation(fields: [manufacturer_id], references: [id])
+  manufacturer_id String?
+
+  @@index([nfc_tag_id])
+  @@index([alert_type])
+  @@index([is_resolved])
+}
+
+model TagGenerationBatch {
+  id             String         @id @default(uuid())
+  manufacturer_id String
+  product_id     String
+  batch_name     String
+  total_tags     Int
+  generated_tags Int
+  status         TagBatchStatus @default(PENDING)
+  created_by     String
+  created_at     DateTime       @default(now())
+
+  manufacturer Manufacturer @relation(fields: [manufacturer_id], references: [id], onDelete: Cascade)
+  product      Product      @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  creator      User         @relation("TagBatchCreatedBy", fields: [created_by], references: [id])
+
+  @@index([manufacturer_id])
+  @@index([product_id])
+  @@index([status])
+}
+
+model SubscriptionPlan {
+  id            String   @id @default(uuid())
+  name          String   @unique
+  tags_per_month Int
+  price_usd     Decimal  @db.Decimal(10, 2)
+  features      Json
+  created_at    DateTime @default(now())
+}
+
+model Notification {
+  id         String           @id @default(uuid())
+  user_id    String
+  title      String
+  message    String
+  type       NotificationType
+  is_read    Boolean          @default(false)
+  created_at DateTime         @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([is_read])
+}
+
+// Internal tables to support security flows (OTP, reset, sessions)
+model EmailVerificationOtp {
+  id         String   @id @default(uuid())
+  user_id    String
+  otp_hash   String
+  expires_at DateTime
+  created_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([expires_at])
+}
+
+model PasswordResetToken {
+  id          String   @id @default(uuid())
+  user_id     String
+  token_hash  String   @unique
+  expires_at  DateTime
+  used_at     DateTime?
+  created_at  DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([expires_at])
+}
+
+model UserSession {
+  id                 String   @id @default(uuid())
+  user_id            String
+  refresh_token_hash String   @unique
+  user_agent         String?
+  ip                 String?
+  created_at         DateTime @default(now())
+  revoked_at         DateTime?
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([revoked_at])
+}
